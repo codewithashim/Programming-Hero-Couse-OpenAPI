@@ -29,7 +29,7 @@ const displayMilestone = async () => {
         <div class="hidden_panel">
 
           ${milstoneData.modules.map(function (item) {
-             return `
+      return `
                 <div class="module border-b">
                     <p>${item.name}</p>
                 </div>
@@ -46,6 +46,14 @@ const displayMilestone = async () => {
 const openMilstion = (milstonEliment) => {
   const currentPanel = milstonEliment.parentNode.nextElementSibling;
   const shownPanel = document.querySelector('.show')
+
+
+  const active = document.querySelector('.active')
+
+  if (active && !milstonEliment.classList.contains('active')) {
+    active.classList.remove('active')
+  }
+  milstonEliment.classList.toggle('active');
 
   if (!currentPanel.classList.contains("show") && shownPanel) {
     shownPanel.classList.remove('show');
