@@ -13,9 +13,9 @@ const displayMilestone = async () => {
     const div = document.createElement('div')
 
     div.innerHTML = `
-        <div class="milestone border-b">
+        <div class="milestone border-b" id="${milstoneData._id}">
         <div class="flex">
-          <div class="checkbox" onclick="markMilston(this, id)"><input type="checkbox" /></div>
+          <div class="checkbox" onclick="markMileStone(this, id)"><input type="checkbox" /></div>
           <div onclick="openMilstion(this, ${milstoneData._id})">
             <p>
               ${milstoneData.name}
@@ -79,12 +79,21 @@ milestoneImage.onload = function () {
   this.style.opacity = "1";
 }
 
+function markMileStone(checkbox, id) {
+  const doneList = document.querySelector(".doneList");
+  const milestonesList = document.querySelector(".milestones");
+  const item = document.getElementById(id);
 
-const markMilston = () => {
-  const doneList = document.querySelector('.doneList');
-  const milstonsList = document.querySelector('.milestones');
+  if (checkbox.checked) {
+    // mark as done
+    milestonesList.removeChild(item);
+    doneList.appendChild(item);
+  } else {
+    // back to main list
+    milestonesList.appendChild(item);
+    doneList.removeChild(item);
 
-
+  }
 }
 
 
