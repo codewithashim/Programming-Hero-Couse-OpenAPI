@@ -26,6 +26,7 @@ body {
   display: flex;
   justify-content: space-between;
 }
+
 .nav img {
   width: 200px;
 }
@@ -35,6 +36,7 @@ body {
   align-items: center;
   justify-content: center;
 }
+
 .nav .avatar img {
   width: 30px;
   height: 30px;
@@ -138,6 +140,7 @@ input[type="checkbox"] {
 }
 
 @media only screen and (max-width: 1024px) {
+
   .main,
   .todo {
     grid-template-columns: repeat(1, 1fr);
@@ -158,4 +161,18 @@ input[type="checkbox"] {
   .doneList {
     height: fit-content;
   }
+}
+
+.complitedMilston {
+  padding: 1rem;
+  border-top: 0.5rem whitesmoke;
+}
+
+.complitedMilston p{
+  border: 1px solid white;
+  padding: 0.4rem;
+  border-radius: 0.2rem;
+  color: #fff;
+  text-align: center;
+  background: #35bb78;
 }

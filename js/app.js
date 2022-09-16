@@ -15,7 +15,9 @@ const displayMilestone = async () => {
     div.innerHTML = `
         <div class="milestone border-b" id="${milstoneData._id}">
         <div class="flex">
-          <div class="checkbox" onclick="markMileStone(this, id)"><input type="checkbox" /></div>
+        <div class="checkbox">
+          <input type="checkbox" onclick="markMileStone(this,${milstoneData._id})"/>
+        </div>
           <div onclick="openMilstion(this, ${milstoneData._id})">
             <p>
               ${milstoneData.name}
@@ -24,9 +26,8 @@ const displayMilestone = async () => {
           </div>
         </div>
         <div class="hidden_panel">
-
           ${milstoneData.modules.map(function (item) {
-      return `
+        return `
                 <div class="module border-b">
                     <p>${item.name}</p>
                 </div>
@@ -74,14 +75,17 @@ const showMilestone = async (id) => {
 }
 
 // listen for image load 
+
 const milestoneImage = document.querySelector('.milestoneImage')
 milestoneImage.onload = function () {
   this.style.opacity = "1";
 }
 
 function markMileStone(checkbox, id) {
-  const doneList = document.querySelector(".doneList");
-  const milestonesList = document.querySelector(".milestones");
+  // const doneList = document.querySelector(".doneList");
+  const doneList = document.getElementById("doneListContainer");
+  const milestonesList = document.getElementById("milestoneContainer");
+  // const milestonesList = document.querySelector(".milestones");
   const item = document.getElementById(id);
 
   if (checkbox.checked) {
@@ -92,9 +96,43 @@ function markMileStone(checkbox, id) {
     // back to main list
     milestonesList.appendChild(item);
     doneList.removeChild(item);
-
+    // task - do the sorting
+    // reload list
   }
+
 }
 
+
+// function markMileStone(checkBox, id) {
+//   // const doneList = document.querySelector(".doneList");
+  // const doneList = document.getElementById("doneListContainer");
+//   const milestonesList = document.getElementById("milestoneContainer");
+//   const item = document.getElementById(id)
+
+//   if (checkBox.checked) {
+//     milestonesList.removeChild(item)
+//     doneList.appendChild(item)
+//   } else {
+//     milestonesList.appendChild(item)
+//     doneList.removeChild(item)
+//   }
+
+  // const milestonesList = document.getElementById("milestoneContainer");
+  // document.getElementById(id).style.display = "none";
+  // const div = document.createElement('div');
+  // div.classList.add("complitedMilston")
+  // div.innerHTML = `
+  //   <p onclick="showAgain('${id}')">${name}</p>
+  // `
+  // milestonesList.appendChild(div);
+
+// }
+
+// const showAgain = (id) => {
+//   console.log(id)
+//   document.getElementById(id).style.display = "block";
+//   const doneList = document.querySelector(".doneList");
+//   doneList.style.display = "none";
+// }
 
 displayMilestone()
